@@ -14,33 +14,32 @@
       flake-utils.lib.eachDefaultSystem (system: 
         let 
             pkgs = import nixpkgs { inherit system; };
-            fhs = pkgs.buildFHSEnv {
-                name = "dba1-env";
-                targetPkgs = _: with pkgs; [
-                    postgresql
-                    libargon2
-                    (python313.withPackages(p: with p; [
+            python = pkgs.python313.withPackages(p: with p; [
                       argon2-cffi
                       psycopg2
                       flask
                       python-dotenv
-                    ]))
-                ];
+                    ]);
+            pack = [
+              pkgs.postgresql
+              pkgs.libargon2
+              python
+            ];
+            fhs = pkgs.buildFHSEnv {
+                name = "dbch1-env";
+                targetPkgs = _: pack;
             };
-            project = pyproject-nix.lib.project.loadPyproject {
-              projectRoot = ./.;
-            };
-            python = pkgs.python313;
         in
         {
           devShell = fhs.env;
 
-          packages.default = 
-            let
-              attrs = project.renderers.buildPythonPackages { inherit python; };
-            in
-              python.pkgs.buildPythonPackage (attrs {
-              });
+          packages.default = python.pkgs.buildPythonPackage rec {
+            pname = "dbch1";
+            version = "1.0.0";
+            src = pkgs.nix-gitignore.gitignoreSource [ ./.gitignore ] ./.;
+            propagatedBuildInputs = pack;
+            dontUnpack = true;
+          };
         }
     );
 }
