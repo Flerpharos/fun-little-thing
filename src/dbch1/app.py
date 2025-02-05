@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from flask import Flask, render_template, request, redirect
 import psycopg2
 from argon2 import PasswordHasher
@@ -68,7 +66,7 @@ def show_entries():
     cur.close()
     return render_template('entries.html', rows=rows)
 
-def main():
+def runapp():
     app.run(debug=True)
 
 if __name__ == '__main__':

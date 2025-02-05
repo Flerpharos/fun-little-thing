@@ -1,5 +1,5 @@
 [project]
-name = "dba1"
+name = "dbch1"
 version = "0.1.0"
 description = "I wanted to lol"
 readme = "README.md"
@@ -12,4 +12,4 @@ dependencies = [
 ]
 
 [project.scripts]
-dbch-test = "app:main"
+dbch1-test = "dbch1:runapp"
