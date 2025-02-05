@@ -20,7 +20,7 @@ First, the Postgres DB. I assume most everyone looking at this knows how to make
 If you're using Nix, the `resources/postgres.nix` file is pulled almost directly from my own configs running the container.
 All you would need to do is change the password and run the script on the ch1 user.
 
-The second thing to do is to setup the dependencies. I have included a pyproject.toml that conforms to the uv spec for those. It's roughly similar to a Poetry pyproject.toml, but the toml headers are a little different and the syntax is too.
+The second thing to do is to setup the dependencies. I have included a pyproject.toml that conforms to the spec for those. It's roughly similar to a Poetry pyproject.toml, so if you're coming from there it should be a smooth transition.
 
 Again, if you are using Nix, there is a flake for the whole setup. Go ahead and just do a `nix develop`.
 

@@ -34,7 +34,8 @@
           devShell = fhs.env;
 
           packages.default = python.pkgs.buildPythonPackage rec {
-            pname = "dbch1";
+            name = "dbch1";
+            pname = "dbch1-test";
             version = "1.0.0";
             src = pkgs.nix-gitignore.gitignoreSource [ ./.gitignore ] ./.;
             propagatedBuildInputs = pack;

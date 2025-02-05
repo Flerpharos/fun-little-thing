@@ -10,3 +10,6 @@ dependencies = [
     "psycopg2>=2.9.10",
     "python-dotenv>=1.0.1"
 ]
+
+[project.scripts]
+dbch-test = "app:main"
