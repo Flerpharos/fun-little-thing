@@ -38,7 +38,6 @@
             version = "1.0.0";
             src = pkgs.nix-gitignore.gitignoreSource [ ./.gitignore ] ./.;
             propagatedBuildInputs = pack;
-            dontUnpack = true;
           };
         }
     );
