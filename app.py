@@ -22,13 +22,6 @@ def hash(password):
 
     return password_hasher.hash(password)
 
-def verify(passhash):
-    global password_hasher
-    if password_hasher == None:
-        password_hasher = PasswordHasher()
-    
-    return password_hasher.verify(passhash)
-
 # Connect to PostgreSQL
 conn = psycopg2.connect(
     dbname=getenv('DB_NAME'),
@@ -58,7 +51,7 @@ def signup():
         cur.execute("""
             INSERT INTO students (first_name, last_name, student_id, university, course, username, password)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """, (first_name, last_name, student_id, university, course, username, hash(password)))
+        """, (first_name, last_name, student_id, university, course, username, hash(password) if getenv('USE_HASH') is not None else password))
         conn.commit()
         cur.close()
         return redirect('/show_entries')
