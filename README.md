@@ -22,7 +22,7 @@ All you would need to do is change the password and run the script on the ch1 us
 
 The second thing to do is to setup the dependencies. I have included a pyproject.toml that conforms to the spec for those. It's roughly similar to a Poetry pyproject.toml, so if you're coming from there it should be a smooth transition.
 
-Again, if you are using Nix, there is a flake for the whole setup. Go ahead and just do a `nix develop`.
+Again, if you are using Nix, there is a flake for the whole setup. Go ahead and just do a `nix develop` or `nix shell` or `nix run`, or if you're crazy you could install it as a flake.
 
 Ok, last thing. You need to set some environment variables.
 
@@ -35,7 +35,12 @@ Ok, last thing. You need to set some environment variables.
 | DB_PORT | Postgres defaults to 5432, but do specify it |
 | USE_HASH | if this even exists, it will hash passwords |
 
-I have changed the software to accept a .env file, so if that's youre jam, you're good to go.
+I have changed the software to accept a .env file, so if that's your jam (and you aren't using a packaged build like `nix run`), you're good to go. Otherwise, make sure you're using export like follows:
+
+```sh
+export DB_NAME=name
+export USE_HASH=
+```
 
 After that, just run `python app.py` and try it out. There's not really any changes though, so it probably isn't the most interesting. The password file is just a `text` type, so if you swap between USE_HASH and not USE_HASH, you can see all of them in the same table.
 
