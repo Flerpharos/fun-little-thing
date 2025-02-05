@@ -42,7 +42,7 @@
               src = pkgs.nix-gitignore.gitignoreSource [ ./.gitignore ] ./.;
               propagatedBuildInputs = pack;
             };
-          }
+          };
         }
     );
 }
