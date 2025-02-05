@@ -1,0 +1,15 @@
+[project]
+name = "dba1"
+version = "0.1.0"
+description = "I wanted to lol"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "argon2-cffi>=23.1.0",
+    "flask>=3.1.0",
+    "psycopg2>=2.9.10",
+    "python-dotenv>=1.0.1"
+]
+
+[project.scripts]
+cli = "app:main"
