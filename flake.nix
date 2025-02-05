@@ -33,13 +33,16 @@
         {
           devShell = fhs.env;
 
-          packages.default = python.pkgs.buildPythonPackage rec {
-            name = "dbch1";
-            pname = "dbch1-test";
-            version = "1.0.0";
-            src = pkgs.nix-gitignore.gitignoreSource [ ./.gitignore ] ./.;
-            propagatedBuildInputs = pack;
-          };
+          packages = {
+            default = self.packages.${system}.dbch1;
+            dbch1 = python.pkgs.buildPythonPackage rec {
+              name = "dbch1";
+              pname = "dbch1-test";
+              version = "1.0.0";
+              src = pkgs.nix-gitignore.gitignoreSource [ ./.gitignore ] ./.;
+              propagatedBuildInputs = pack;
+            };
+          }
         }
     );
 }
