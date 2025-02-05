@@ -12,7 +12,8 @@ app = Flask(__name__)
 # we late initialize the password hash
 password_hasher = None
 # this ONLY works because there is absolutely zero asynchronous code in here.
-# otherwise we'd get multiple password hashers
+# otherwise we'd get multiple password hashers. I don't think it would be a real
+# problem but it sure would be a waste
 
 def hash(password):
     global password_hasher
